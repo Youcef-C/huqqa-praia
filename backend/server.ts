@@ -16,11 +16,21 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 
 app.use(cors({
 	origin: function (origin, callback) {
-		if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-			callback(null, true);
-		} else {
-			callback(new Error('Not allowed by CORS'));
+		// Allow requests with no origin (like mobile apps or curl requests)
+		if (!origin) return callback(null, true);
+
+		if (allowedOrigins.indexOf(origin) !== -1) {
+			return callback(null, true);
 		}
+
+		// Check for Vercel preview deployments
+		// Matches https://huqqa-praia-front-*-youcefcs-projects.vercel.app
+		const vercelPreviewPattern = /^https:\/\/huqqa-praia-front-.*-youcefcs-projects\.vercel\.app$/;
+		if (vercelPreviewPattern.test(origin)) {
+			return callback(null, true);
+		}
+
+		callback(new Error('Not allowed by CORS'));
 	},
 	credentials: true
 }));
