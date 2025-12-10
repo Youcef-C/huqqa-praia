@@ -67,7 +67,8 @@
 				"category": "Categoria",
 				"price": "Preço",
 				"status": "Status",
-				"actions": "Ações"
+				"actions": "Ações",
+				"subcategory": "Subcategoria"
 			},
 			"status": {
 				"available": "Disponível",
@@ -97,7 +98,8 @@
 				"food": "Comida",
 				"drink": "Bebida",
 				"hookah": "Narguilé",
-				"availability": "Disponibilidade"
+				"availability": "Disponibilidade",
+				"subcategory": "Subcategoria"
 			}
 		},
 		"EventsManager": {
@@ -168,14 +170,14 @@
 				"itemsEn": "Itens (EN)",
 				"itemsPt": "Itens (PT)"
 			}
-		}
-	},
-	"MenuPage": {
-		"title": "Menu",
-		"categories": {
-			"FOOD": "Comida",
-			"DRINK": "Bebidas",
-			"HOOKAH": "Narguilé"
+		},
+		"MenuPage": {
+			"title": "Menu",
+			"categories": {
+				"FOOD": "Comida",
+				"DRINK": "Bebidas",
+				"HOOKAH": "Narguilé"
+			}
 		}
 	},
 	"PacksPage": {

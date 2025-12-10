@@ -15,7 +15,7 @@ async function getPacks() {
 
 export default async function PacksPage({ params }: { params: Promise<{ locale: string }> }) {
 	const { locale } = await params;
-	const t = await getTranslations('PacksPage');
+	const t = await getTranslations('Admin.PacksPage');
 	const packs = await getPacks();
 
 	// Capitalize locale for property access

@@ -159,39 +159,10 @@ export default function HomePage() {
 
 
         </Container>
-        {/* Scroll Down Indicator */}
-        <Box
-          onClick={() => {
-            const element = document.getElementById('events-section');
-            element?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          sx={{
-            position: 'absolute',
-            bottom: 80,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            color: 'white',
-            cursor: 'pointer',
-            zIndex: 3,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            animation: 'bounce 2s infinite',
-            '@keyframes bounce': {
-              '0%, 100%': { transform: 'translateX(-50%) translateY(0)' },
-              '50%': { transform: 'translateX(-50%) translateY(-10px)' },
-            },
-            '&:hover': {
-              color: '#d4af37'
-            }
-          }}
-        >
-          <KeyboardArrowDownIcon fontSize="large" />
-        </Box>
       </Box>
 
       {/* Events / Highlights Section */}
-      <Container id="events-section" maxWidth="xl" sx={{ mt: 5, mb: 5 }}>
+      {/* <Container id="events-section" maxWidth="xl" sx={{ mt: 5, mb: 5 }}>
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography variant="overline" sx={{ color: '#d4af37', letterSpacing: '0.3em', fontWeight: 700 }}>
             {t('happeningNow')}
@@ -264,7 +235,6 @@ export default function HomePage() {
                     }
                   }}
                 >
-                  {/* Image Background */}
                   {event.image && (
                     <Box className="event-image" sx={{ position: 'relative', width: '100%', height: '100%', transition: 'transform 0.6s ease' }}>
                       <Image
@@ -275,7 +245,6 @@ export default function HomePage() {
                       />
                     </Box>
                   )}
-                  {/* Gradient Overlay */}
                   <Box className="event-overlay" sx={{
                     position: 'absolute',
                     top: 0,
@@ -286,7 +255,6 @@ export default function HomePage() {
                     transition: 'background 0.4s ease'
                   }} />
 
-                  {/* Content */}
                   <Box sx={{
                     position: 'absolute',
                     bottom: 0,
@@ -334,10 +302,10 @@ export default function HomePage() {
             ))}
           </Swiper>
         </Box>
-      </Container>
+      </Container> */}
 
       {/* Event Popup Modal */}
-      <Modal
+      {/* <Modal
         open={Boolean(selectedEvent)}
         onClose={() => setSelectedEvent(null)}
         sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -362,7 +330,6 @@ export default function HomePage() {
                 <CloseIcon />
               </IconButton>
 
-              {/* Left Side: Image */}
               <Box sx={{
                 position: 'relative',
                 width: { xs: '100%', md: '60%' },
@@ -379,7 +346,6 @@ export default function HomePage() {
                 )}
               </Box>
 
-              {/* Right Side: Content */}
               <Box sx={{
                 width: { xs: '100%', md: '40%' },
                 height: { xs: '60%', md: '100%' },
@@ -405,7 +371,7 @@ export default function HomePage() {
             </>
           )}
         </Box>
-      </Modal>
+      </Modal> */}
 
     </Box>
   );

@@ -48,6 +48,7 @@ export async function createMenuItem(formData: FormData) {
 	const descriptionPt = formData.get('descriptionPt') as string;
 	const price = parseFloat(formData.get('price') as string);
 	const category = formData.get('category') as string;
+	const subcategory = formData.get('subcategory') as string;
 
 	await fetch(`${API_URL}/menu`, {
 		method: 'POST',
@@ -61,6 +62,7 @@ export async function createMenuItem(formData: FormData) {
 			descriptionPt,
 			price,
 			category: category || 'FOOD',
+			subcategory: subcategory || null,
 			available: true
 		})
 	});
@@ -85,6 +87,7 @@ export async function updateMenuItem(id: number, formData: FormData) {
 	const descriptionPt = formData.get('descriptionPt') as string;
 	const price = parseFloat(formData.get('price') as string);
 	const category = formData.get('category') as string;
+	const subcategory = formData.get('subcategory') as string;
 	const available = formData.get('available') === 'true';
 
 	await fetch(`${API_URL}/menu/${id}`, {
@@ -93,7 +96,7 @@ export async function updateMenuItem(id: number, formData: FormData) {
 		body: JSON.stringify({
 			nameFr, nameEn, namePt,
 			descriptionFr, descriptionEn, descriptionPt,
-			price, category, available
+			price, category, subcategory, available
 		})
 	});
 	revalidatePath('/menu');

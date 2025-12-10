@@ -34,6 +34,7 @@ model MenuItem {
   descriptionPt String?
   price         Float
   category      String // HOOKAH, DRINK, FOOD
+  subcategory   String?
   image         String?
   available     Boolean @default(true)
 }

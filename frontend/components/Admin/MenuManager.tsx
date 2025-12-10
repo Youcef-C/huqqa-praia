@@ -119,6 +119,7 @@ export default function MenuManager({ menuItems }: { menuItems: any[] }) {
 						<TableRow sx={{ bgcolor: '#000' }}>
 							<TableCell sx={{ color: '#d4af37', borderBottom: '1px solid #333', fontWeight: 'bold' }}>{t('tableHeaders.nameFr')}</TableCell>
 							<TableCell sx={{ color: '#d4af37', borderBottom: '1px solid #333', fontWeight: 'bold' }}>{t('tableHeaders.category')}</TableCell>
+							<TableCell sx={{ color: '#d4af37', borderBottom: '1px solid #333', fontWeight: 'bold' }}>{t('tableHeaders.subcategory')}</TableCell>
 							<TableCell sx={{ color: '#d4af37', borderBottom: '1px solid #333', fontWeight: 'bold' }}>{t('tableHeaders.price')}</TableCell>
 							<TableCell sx={{ color: '#d4af37', borderBottom: '1px solid #333', fontWeight: 'bold' }}>{t('tableHeaders.status')}</TableCell>
 							<TableCell sx={{ color: '#d4af37', borderBottom: '1px solid #333', fontWeight: 'bold', width: 100 }}>{t('tableHeaders.actions')}</TableCell>
@@ -129,6 +130,7 @@ export default function MenuManager({ menuItems }: { menuItems: any[] }) {
 							<TableRow key={item.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell sx={{ color: 'white', borderBottom: '1px solid #222' }}>{item.nameFr}</TableCell>
 								<TableCell sx={{ color: 'white', borderBottom: '1px solid #222' }}>{item.category}</TableCell>
+								<TableCell sx={{ color: 'white', borderBottom: '1px solid #222' }}>{item.subcategory || '-'}</TableCell>
 								<TableCell sx={{ color: '#d4af37', borderBottom: '1px solid #222' }}>{item.price} CVE</TableCell>
 								<TableCell sx={{ color: item.available ? 'lightgreen' : 'gray', borderBottom: '1px solid #222' }}>{item.available ? t('status.available') : t('status.unavailable')}</TableCell>
 								<TableCell sx={{ borderBottom: '1px solid #222' }}>
@@ -265,6 +267,15 @@ export default function MenuManager({ menuItems }: { menuItems: any[] }) {
 									<MenuItem value="HOOKAH">{t('form.hookah')}</MenuItem>
 								</Select>
 							</FormControl>
+							<TextField
+								name="subcategory"
+								label={t('form.subcategory')}
+								defaultValue={editingItem?.subcategory || ''}
+								fullWidth
+								variant="outlined"
+								InputLabelProps={{ style: { color: '#888' } }}
+								sx={{ input: { color: 'white' }, fieldset: { borderColor: '#444' } }}
+							/>
 						</Box>
 
 						{editingItem && (

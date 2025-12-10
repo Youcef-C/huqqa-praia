@@ -67,7 +67,8 @@
 				"category": "Catégorie",
 				"price": "Prix",
 				"status": "Statut",
-				"actions": "Actions"
+				"actions": "Actions",
+				"subcategory": "Sous-catégorie"
 			},
 			"status": {
 				"available": "Disponible",
@@ -97,7 +98,8 @@
 				"food": "Nourriture",
 				"drink": "Boisson",
 				"hookah": "Chicha",
-				"availability": "Disponibilité"
+				"availability": "Disponibilité",
+				"subcategory": "Sous-catégorie"
 			}
 		},
 		"EventsManager": {

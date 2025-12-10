@@ -67,7 +67,8 @@
 				"category": "Category",
 				"price": "Price",
 				"status": "Status",
-				"actions": "Actions"
+				"actions": "Actions",
+				"subcategory": "Subcategory"
 			},
 			"status": {
 				"available": "Available",
@@ -97,7 +98,8 @@
 				"food": "Food",
 				"drink": "Drink",
 				"hookah": "Hookah",
-				"availability": "Availability"
+				"availability": "Availability",
+				"subcategory": "Subcategory"
 			}
 		},
 		"EventsManager": {

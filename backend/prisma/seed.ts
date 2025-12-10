@@ -46,6 +46,7 @@ async function main() {
 			descriptionPt: 'Mistura apaixonada de frutas tropicais',
 			price: 2200,
 			category: 'HOOKAH',
+			subcategory: 'SIGNATURE BLENDS',
 			image: '/assets/shisha1.jpg',
 		},
 		{
@@ -57,6 +58,7 @@ async function main() {
 			descriptionPt: 'Abacaxi, Manga, Hortelã',
 			price: 2200,
 			category: 'HOOKAH',
+			subcategory: 'SIGNATURE BLENDS',
 			image: '/assets/shisha2.jpg',
 		},
 		{
@@ -68,6 +70,7 @@ async function main() {
 			descriptionPt: 'Melão, Manga, Frutas vermelhas, Hortelã',
 			price: 2200,
 			category: 'HOOKAH',
+			subcategory: 'PREMIUM BLENDS',
 			image: '/assets/shisha1.jpg',
 		},
 		{
@@ -79,6 +82,7 @@ async function main() {
 			descriptionPt: 'Abacaxi, Banana, Hortelã',
 			price: 2200,
 			category: 'HOOKAH',
+			subcategory: 'PREMIUM BLENDS',
 			image: '/assets/shisha2.jpg',
 		},
 		// DRINKS - MOCKTAILS
@@ -91,6 +95,7 @@ async function main() {
 			descriptionPt: 'Lima, Hortelã, Água com gás (Sem álcool)',
 			price: 1100,
 			category: 'DRINK',
+			subcategory: 'MOCKTAILS',
 			image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd',
 		},
 		{
@@ -102,6 +107,7 @@ async function main() {
 			descriptionPt: 'Abacaxi, Coco, Creme (Sem álcool)',
 			price: 1100,
 			category: 'DRINK',
+			subcategory: 'MOCKTAILS',
 			image: 'https://images.unsplash.com/photo-1546171753-97d7676e4602',
 		},
 		{
@@ -113,6 +119,7 @@ async function main() {
 			descriptionPt: 'Morango, Lima, Hortelã',
 			price: 1300,
 			category: 'DRINK',
+			subcategory: 'MOCKTAILS',
 			image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd',
 		},
 		// FOOD
@@ -125,6 +132,7 @@ async function main() {
 			descriptionPt: 'Frango marinado, molho de queijo, batatas fritas',
 			price: 1500,
 			category: 'FOOD',
+			subcategory: 'MAIN COURSES',
 		},
 		{
 			nameFr: 'Burger Huqqa',
@@ -135,6 +143,7 @@ async function main() {
 			descriptionPt: 'Bife 180g, Cheddar, Cebolas caramelizadas',
 			price: 1800,
 			category: 'FOOD',
+			subcategory: 'MAIN COURSES',
 		},
 		{
 			nameFr: 'Nachos Guacamole',
@@ -145,6 +154,7 @@ async function main() {
 			descriptionPt: 'Chips de milho, guacamole caseiro, salsa',
 			price: 1300,
 			category: 'FOOD',
+			subcategory: 'STARTERS',
 		}
 	]
 

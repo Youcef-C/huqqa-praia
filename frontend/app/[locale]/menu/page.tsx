@@ -15,7 +15,7 @@ async function getMenuItems() {
 
 export default async function MenuPage({ params }: { params: Promise<{ locale: string }> }) {
 	const { locale } = await params;
-	const t = await getTranslations('MenuPage');
+	const t = await getTranslations('Admin.MenuPage');
 	const menuItems = await getMenuItems();
 
 	// Capitalize locale for property access (e.g., 'fr' -> 'Fr')
@@ -56,39 +56,79 @@ export default async function MenuPage({ params }: { params: Promise<{ locale: s
 							<Box sx={{ height: '1px', bgcolor: 'primary.main', width: '100px', ml: 3, display: { xs: 'none', md: 'block' } }} />
 						</Box>
 
-						<Grid container spacing={4}>
-							{menuItems.filter((item: any) => item.category === category).map((item: any) => {
-								const name = item[`name${localeKey}`] || item.nameFr;
-								const description = item[`description${localeKey}`] || item.descriptionFr;
+						{(() => {
+							// Filter items for this category
+							const categoryItems = menuItems.filter((item: any) => item.category === category);
 
-								return (
-									<Grid size={{ xs: 12, md: 6 }} key={item.id}>
-										<Box sx={{
-											display: 'flex',
-											justifyContent: 'space-between',
-											alignItems: 'baseline',
-											borderBottom: '1px solid rgba(255,255,255,0.1)',
-											pb: 2,
-											mb: 2
-										}}>
-											<Box>
-												<Typography variant="h6" sx={{ color: 'white', textTransform: 'uppercase', fontWeight: 600 }}>
-													{name}
-												</Typography>
-												{description && (
-													<Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5, fontStyle: 'italic' }}>
-														{description}
+							// Get unique subcategories
+							const subcategories = Array.from(new Set(categoryItems.map((item: any) => item.subcategory || 'Other')));
+							// Sort: put 'Other' last, otherwise alphabetical or custom order?
+							subcategories.sort((a: any, b: any) => {
+								if (a === 'Other') return 1;
+								if (b === 'Other') return -1;
+								return a.localeCompare(b);
+							});
+
+							return (
+								<Box>
+									{subcategories.map((subcat: any) => {
+										const subcatItems = categoryItems.filter((item: any) => (item.subcategory || 'Other') === subcat);
+										if (subcatItems.length === 0) return null;
+
+										return (
+											<Box key={subcat} sx={{ mb: 6 }}>
+												{/* Subcategory Header - Only show if not 'Other' or if there are multiple subcategories */}
+												{(subcat !== 'Other' || subcategories.length > 1) && (
+													<Typography variant="h5" sx={{
+														color: '#d4af37',
+														textAlign: 'center',
+														mb: 4,
+														fontStyle: 'italic',
+														fontWeight: 600
+													}}>
+														{subcat}
 													</Typography>
 												)}
+
+												<Grid container spacing={4}>
+													{subcatItems.map((item: any) => {
+														const name = item[`name${localeKey}`] || item.nameFr;
+														const description = item[`description${localeKey}`] || item.descriptionFr;
+
+														return (
+															<Grid size={{ xs: 12, md: 6 }} key={item.id}>
+																<Box sx={{
+																	display: 'flex',
+																	justifyContent: 'space-between',
+																	alignItems: 'baseline',
+																	borderBottom: '1px solid rgba(255,255,255,0.1)',
+																	pb: 2,
+																	mb: 2
+																}}>
+																	<Box>
+																		<Typography variant="h6" sx={{ color: 'white', textTransform: 'uppercase', fontWeight: 600 }}>
+																			{name}
+																		</Typography>
+																		{description && (
+																			<Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5, fontStyle: 'italic' }}>
+																				{description}
+																			</Typography>
+																		)}
+																	</Box>
+																	<Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700, ml: 2, whiteSpace: 'nowrap' }}>
+																		{item.price.toLocaleString()} CVE
+																	</Typography>
+																</Box>
+															</Grid>
+														);
+													})}
+												</Grid>
 											</Box>
-											<Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700, ml: 2, whiteSpace: 'nowrap' }}>
-												{item.price.toLocaleString()} CVE
-											</Typography>
-										</Box>
-									</Grid>
-								);
-							})}
-						</Grid>
+										);
+									})}
+								</Box>
+							);
+						})()}
 					</Box>
 				))}
 			</Container>
