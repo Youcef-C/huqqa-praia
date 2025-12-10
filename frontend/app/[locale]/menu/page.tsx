@@ -62,10 +62,17 @@ export default async function MenuPage({ params }: { params: Promise<{ locale: s
 
 							// Get unique subcategories
 							const subcategories = Array.from(new Set(categoryItems.map((item: any) => item.subcategory || 'Other')));
-							// Sort: put 'Other' last, otherwise alphabetical or custom order?
+							// Sort: put 'Other' last, and 'Soft' even after that (or just at the end)
 							subcategories.sort((a: any, b: any) => {
+								const isSoftA = a.toUpperCase() === 'SOFT';
+								const isSoftB = b.toUpperCase() === 'SOFT';
+
+								if (isSoftA && !isSoftB) return 1;
+								if (!isSoftA && isSoftB) return -1;
+
 								if (a === 'Other') return 1;
 								if (b === 'Other') return -1;
+
 								return a.localeCompare(b);
 							});
 
@@ -110,7 +117,7 @@ export default async function MenuPage({ params }: { params: Promise<{ locale: s
 																			{name}
 																		</Typography>
 																		{description && (
-																			<Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5, fontStyle: 'italic' }}>
+																			<Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5, fontStyle: 'italic', whiteSpace: 'pre-wrap' }}>
 																				{description}
 																			</Typography>
 																		)}

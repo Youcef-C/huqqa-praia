@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {
 	Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
 	Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions, IconButton,
-	TablePagination, InputAdornment
+	TablePagination, InputAdornment, Select, MenuItem, FormControl, SelectChangeEvent
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -47,16 +47,25 @@ export default function PacksManager({ packs }: { packs: any[] }) {
 		setPackToDelete(null);
 	};
 
+	// Filter State
+	const [selectedRecommendation, setSelectedRecommendation] = useState('ALL');
+
 	const handleDeleteCancel = () => {
 		setDeleteOpen(false);
 		setPackToDelete(null);
 	};
 
-	// Filter
-	const filteredPacks = packs.filter(pack =>
-		pack.titleFr.toLowerCase().includes(searchTerm.toLowerCase()) ||
-		pack.titleEn.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	// Filter Logic
+	const filteredPacks = packs.filter(pack => {
+		const matchesSearch = pack.titleFr.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			pack.titleEn.toLowerCase().includes(searchTerm.toLowerCase());
+		const matchesRec = selectedRecommendation === 'ALL' || pack.recommendedFor === selectedRecommendation;
+
+		return matchesSearch && matchesRec;
+	});
+
+	// Get unique recommendations for filter
+	const availableRecommendations = Array.from(new Set(packs.map(p => p.recommendedFor))).sort();
 
 	// Pagination
 	const displayedPacks = filteredPacks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -74,7 +83,32 @@ export default function PacksManager({ packs }: { packs: any[] }) {
 		<Box>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2, alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
 				<Typography variant="h5" sx={{ color: '#d4af37', fontWeight: 600, textTransform: 'uppercase' }}>{t('title')}</Typography>
-				<Box sx={{ display: 'flex', gap: 2 }}>
+				<Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+
+					{/* Recommendation Filter */}
+					<FormControl size="small" sx={{ minWidth: 150 }}>
+						<Select
+							value={selectedRecommendation}
+							onChange={(e: SelectChangeEvent) => {
+								setSelectedRecommendation(e.target.value);
+								setPage(0);
+							}}
+							displayEmpty
+							sx={{
+								color: 'white',
+								bgcolor: '#121212',
+								'.MuiOutlinedInput-notchedOutline': { borderColor: '#333' },
+								'&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#d4af37' },
+								'.MuiSvgIcon-root': { color: '#d4af37' }
+							}}
+						>
+							<MenuItem value="ALL">All Recommendations</MenuItem>
+							{availableRecommendations.map((rec: any) => (
+								<MenuItem key={rec} value={rec}>{rec}</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+
 					<TextField
 						placeholder="Search..."
 						variant="outlined"

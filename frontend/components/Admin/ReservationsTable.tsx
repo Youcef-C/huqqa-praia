@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import {
 	Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, Button, IconButton, Box, Typography,
-	TablePagination, TextField, InputAdornment
+	TablePagination, TextField, InputAdornment, Select, MenuItem, FormControl, SelectChangeEvent
 } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -36,6 +36,9 @@ export default function ReservationsTable({ reservations }: { reservations: Rese
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 	const [searchTerm, setSearchTerm] = useState('');
 
+	// Status Filter State
+	const [selectedStatus, setSelectedStatus] = useState('ALL');
+
 	// Effect to mark component as mounted (client-side only)
 	useEffect(() => {
 		setMounted(true);
@@ -50,12 +53,15 @@ export default function ReservationsTable({ reservations }: { reservations: Rese
 
 	const listToFilter = showArchived ? archivedReservations : activeReservations;
 
-	// Filter by search
-	const filteredReservations = listToFilter.filter(res =>
-		res.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-		res.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-		res.phone.includes(searchTerm)
-	);
+	// Filter Logic
+	const filteredReservations = listToFilter.filter(res => {
+		const matchesSearch = res.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			res.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			res.phone.includes(searchTerm);
+		const matchesStatus = selectedStatus === 'ALL' || res.status === selectedStatus;
+
+		return matchesSearch && matchesStatus;
+	});
 
 	// Pagination logic
 	const displayedReservations = filteredReservations.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -76,7 +82,31 @@ export default function ReservationsTable({ reservations }: { reservations: Rese
 					{showArchived ? "ARCHIVED RESERVATIONS" : t('reservationsTitle')}
 				</Typography>
 
-				<Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+				<Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+					{/* Status Filter */}
+					<FormControl size="small" sx={{ minWidth: 150 }}>
+						<Select
+							value={selectedStatus}
+							onChange={(e: SelectChangeEvent) => {
+								setSelectedStatus(e.target.value);
+								setPage(0);
+							}}
+							displayEmpty
+							sx={{
+								color: 'white',
+								bgcolor: '#121212',
+								'.MuiOutlinedInput-notchedOutline': { borderColor: '#333' },
+								'&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#d4af37' },
+								'.MuiSvgIcon-root': { color: '#d4af37' }
+							}}
+						>
+							<MenuItem value="ALL">All Statuses</MenuItem>
+							<MenuItem value="PENDING">Pending</MenuItem>
+							<MenuItem value="CONFIRMED">Confirmed</MenuItem>
+							<MenuItem value="CANCELLED">Cancelled</MenuItem>
+						</Select>
+					</FormControl>
+
 					<TextField
 						placeholder="Search..."
 						variant="outlined"

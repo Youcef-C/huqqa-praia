@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {
 	Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
 	Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, InputLabel, FormControl, IconButton,
-	TablePagination, InputAdornment
+	TablePagination, InputAdornment, SelectChangeEvent
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -23,6 +23,10 @@ export default function MenuManager({ menuItems }: { menuItems: any[] }) {
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 	const [searchTerm, setSearchTerm] = useState('');
+
+	// Filter State
+	const [selectedCategory, setSelectedCategory] = useState('ALL');
+	const [selectedSubcategory, setSelectedSubcategory] = useState('ALL');
 
 	const handleClickOpen = (item?: any) => {
 		setEditingItem(item || null);
@@ -52,11 +56,22 @@ export default function MenuManager({ menuItems }: { menuItems: any[] }) {
 		setItemToDelete(null);
 	};
 
-	// Filter
-	const filteredItems = menuItems.filter(item =>
-		item.nameFr.toLowerCase().includes(searchTerm.toLowerCase()) ||
-		item.category.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	// Filter Logic
+	const filteredItems = menuItems.filter(item => {
+		const matchesSearch = item.nameFr.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			item.category.toLowerCase().includes(searchTerm.toLowerCase());
+		const matchesCategory = selectedCategory === 'ALL' || item.category === selectedCategory;
+		const matchesSubcategory = selectedSubcategory === 'ALL' || (item.subcategory || 'Other') === selectedSubcategory;
+
+		return matchesSearch && matchesCategory && matchesSubcategory;
+	});
+
+	// Get available subcategories based on selected category
+	const availableSubcategories = Array.from(new Set(
+		menuItems
+			.filter(item => selectedCategory === 'ALL' || item.category === selectedCategory)
+			.map(item => item.subcategory || 'Other')
+	)).sort();
 
 	// Pagination
 	const displayedItems = filteredItems.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -74,7 +89,55 @@ export default function MenuManager({ menuItems }: { menuItems: any[] }) {
 		<Box>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2, alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
 				<Typography variant="h5" sx={{ color: '#d4af37', fontWeight: 600, textTransform: 'uppercase' }}>{t('title')}</Typography>
-				<Box sx={{ display: 'flex', gap: 2 }}>
+				<Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+
+					{/* Category Filter */}
+					<FormControl size="small" sx={{ minWidth: 120 }}>
+						<Select
+							value={selectedCategory}
+							onChange={(e) => {
+								setSelectedCategory(e.target.value);
+								setSelectedSubcategory('ALL'); // Reset subcategory when category changes
+								setPage(0);
+							}}
+							sx={{
+								color: 'white',
+								bgcolor: '#121212',
+								'.MuiOutlinedInput-notchedOutline': { borderColor: '#333' },
+								'&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#d4af37' },
+								'.MuiSvgIcon-root': { color: '#d4af37' }
+							}}
+						>
+							<MenuItem value="ALL">All Categories</MenuItem>
+							<MenuItem value="FOOD">{t('form.food')}</MenuItem>
+							<MenuItem value="DRINK">{t('form.drink')}</MenuItem>
+							<MenuItem value="HOOKAH">{t('form.hookah')}</MenuItem>
+						</Select>
+					</FormControl>
+
+					{/* Subcategory Filter */}
+					<FormControl size="small" sx={{ minWidth: 150 }}>
+						<Select
+							value={selectedSubcategory}
+							onChange={(e) => {
+								setSelectedSubcategory(e.target.value);
+								setPage(0);
+							}}
+							sx={{
+								color: 'white',
+								bgcolor: '#121212',
+								'.MuiOutlinedInput-notchedOutline': { borderColor: '#333' },
+								'&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#d4af37' },
+								'.MuiSvgIcon-root': { color: '#d4af37' }
+							}}
+						>
+							<MenuItem value="ALL">All Subcategories</MenuItem>
+							{availableSubcategories.map((sub: any) => (
+								<MenuItem key={sub} value={sub}>{sub}</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+
 					<TextField
 						placeholder="Search..."
 						variant="outlined"
