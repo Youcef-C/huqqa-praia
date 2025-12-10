@@ -20,7 +20,7 @@ async function getContactInfo() {
 }
 
 export default async function ThePlacePage() {
-	const t = await getTranslations('Admin.ThePlacePage');
+	const t = await getTranslations('ThePlacePage');
 	const contact = await getContactInfo();
 
 	return (
