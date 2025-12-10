@@ -4,18 +4,35 @@ import 'dotenv/config'
 const prisma = new PrismaClient()
 
 async function main() {
-	// Clear existing data
+	// Clear existing data (Order matters for foreign keys)
+	// Deleting reservations first because they might depend on packs
+	await prisma.reservation.deleteMany()
+	await prisma.pack.deleteMany()
 	await prisma.menuItem.deleteMany()
 	await prisma.event.deleteMany()
 	await prisma.admin.deleteMany()
+	await prisma.heroConfig.deleteMany()
+	await prisma.contactInfo.deleteMany()
 
 	// Seed Admin Password
 	const adminPassword = process.env.ADMIN_PASSWORD;
-	await prisma.admin.create({
-		data: {
-			password: adminPassword
-		}
-	})
+	if (!adminPassword) {
+		console.error("ADMIN_PASSWORD is not set in environment variables.");
+		process.exit(1);
+	}
+
+	const existingAdmin = await prisma.admin.findFirst();
+	if (!existingAdmin) {
+		await prisma.admin.create({
+			data: {
+				password: adminPassword
+			}
+		});
+		console.log("Admin seeded.");
+	} else {
+		// Optionally update password if needed
+		console.log("Admin already exists.");
+	}
 
 	// Seed Menu Items
 	const menuItems = [

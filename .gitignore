@@ -24,7 +24,6 @@ backend/dev.db-journal
 
 # AI Artifacts & Documentation
 task.md
-implementation_plan.md
 walkthrough.md
 .gemini/
 .agent/

@@ -15,7 +15,7 @@ async function getMenuItems() {
 
 export default async function MenuPage({ params }: { params: Promise<{ locale: string }> }) {
 	const { locale } = await params;
-	const t = await getTranslations('Admin.MenuPage');
+	const t = await getTranslations('MenuPage');
 	const menuItems = await getMenuItems();
 
 	// Capitalize locale for property access (e.g., 'fr' -> 'Fr')
@@ -82,7 +82,7 @@ export default async function MenuPage({ params }: { params: Promise<{ locale: s
 												)}
 											</Box>
 											<Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700, ml: 2, whiteSpace: 'nowrap' }}>
-												{item.price.toLocaleString()}
+												{item.price.toLocaleString()} CVE
 											</Typography>
 										</Box>
 									</Grid>

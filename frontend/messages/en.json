@@ -27,7 +27,6 @@
 		"subtitle": "Book your table now. Limited to 6 guests per reservation.",
 		"phone": "Phone",
 		"maxGuests": "Max 6 guests",
-		"maxGuests": "Max 6 guests",
 		"successMsg": "Reservation Request Sent!",
 		"arrivalTime": "Arrival Time",
 		"selectPack": "Select a Pack (Optional)",

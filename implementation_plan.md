@@ -28,7 +28,21 @@
 #### [MODIFY] [en.json](file:///Users/youcef/Projects/huqqapraia/frontend/messages/en.json) (and fr.json, pt.json)
 - Add translation keys for "Select Pack", "Pack", "Price", "No Pack Selected".
 
+### [Deployment Migration]
+#### [MODIFY] [schema.prisma](file:///Users/youcef/Projects/huqqapraia/backend/prisma/schema.prisma)
+#### [NEW] [frontend/app/api/login/route.ts](file:///Users/youcef/Projects/huqqapraia/frontend/app/api/login/route.ts)
+#### [NEW] [frontend/app/api/contact/route.ts](file:///Users/youcef/Projects/huqqapraia/frontend/app/api/contact/route.ts)
+#### [NEW] [frontend/app/api/menu/route.ts](file:///Users/youcef/Projects/huqqapraia/frontend/app/api/menu/route.ts)
+#### [NEW] [frontend/app/api/events/route.ts](file:///Users/youcef/Projects/huqqapraia/frontend/app/api/events/route.ts)
+#### [NEW] [frontend/app/api/reservations/route.ts](file:///Users/youcef/Projects/huqqapraia/frontend/app/api/reservations/route.ts)
+#### [NEW] [frontend/app/api/hero/route.ts](file:///Users/youcef/Projects/huqqapraia/frontend/app/api/hero/route.ts)
+#### [DELETE] [backend/server.ts](file:///Users/youcef/Projects/huqqapraia/backend/server.ts)
+
 ## Verification Plan
+### Automated Tests
+- Verify all API endpoints return 200 via `curl`.
+- Test dashboard/login flows with new API routes.
+- Confirm database connection (Postgres) works.
 
 ### Manual Verification
 1.  **Frontend**: Go to `/reservation`. Verify the "Select Pack" field appears and lists packs with prices.
