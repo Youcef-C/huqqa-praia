@@ -6,8 +6,32 @@ const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+// CORS Configuration
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+	? process.env.ALLOWED_ORIGINS.split(',')
+	: [
+		'http://localhost:3000',
+		'http://localhost:3001'
+	];
+
+app.use(cors({
+	origin: function (origin, callback) {
+		if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+	credentials: true
+}));
+
 app.use(express.json({ limit: '50mb' })); // Increased limit for video uploads
+
+// Health Check
+app.get('/api/health', (req, res) => {
+	res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 
 // Hero Config
 app.get('/api/hero', async (req, res) => {

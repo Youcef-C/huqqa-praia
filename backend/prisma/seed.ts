@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import 'dotenv/config'
 
 const prisma = new PrismaClient()
 
@@ -9,7 +10,7 @@ async function main() {
 	await prisma.admin.deleteMany()
 
 	// Seed Admin Password
-	const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+	const adminPassword = process.env.ADMIN_PASSWORD;
 	await prisma.admin.create({
 		data: {
 			password: adminPassword
