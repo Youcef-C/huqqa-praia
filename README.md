@@ -47,7 +47,7 @@ A comprehensive web application for managing reservations, menus, events, and pa
    npx prisma migrate dev
    npx prisma db seed
    ```
-   *Note: Default admin password is seeded as `adbztao19269`.*
+   *Note: A default admin account will be created during seeding.*
 
 4. Start the server:
    ```bash
@@ -74,7 +74,7 @@ A comprehensive web application for managing reservations, menus, events, and pa
 ## Admin Access
 
 - Access the dashboard via the hidden link in the footer or navigate to `/login`.
-- **Password**: `adbztao19269`
+- Use the admin credentials configured during database seeding.
 
 ## Technologies
 
