@@ -20,7 +20,7 @@ export default function ContactManager() {
 	const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
 	useEffect(() => {
-		fetch('http://localhost:4000/api/contact')
+		fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/contact`)
 			.then(res => res.json())
 			.then(data => {
 				if (data) {
@@ -42,7 +42,7 @@ export default function ContactManager() {
 
 	const handleSave = async () => {
 		try {
-			const res = await fetch('http://localhost:4000/api/contact', {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/contact`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ address, email, phone, mapsUrl, instagram, facebook, whatsapp })

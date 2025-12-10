@@ -21,7 +21,7 @@ export default function ReservationPage() {
 	const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
 	useEffect(() => {
-		fetch('http://localhost:4000/api/packs')
+		fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/packs`)
 			.then(res => res.json())
 			.then(data => setPacks(data))
 			.catch(err => console.error(err));
@@ -76,7 +76,7 @@ export default function ReservationPage() {
 		}
 
 		try {
-			const res = await fetch('http://localhost:4000/api/reservations', {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/reservations`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

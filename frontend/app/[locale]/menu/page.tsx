@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 async function getMenuItems() {
 	try {
-		const res = await fetch('http://localhost:4000/api/menu', { cache: 'no-store' });
+		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/menu`, { cache: 'no-store' });
 		if (!res.ok) return [];
 		return res.json();
 	} catch (error) {

@@ -17,7 +17,7 @@ export default function Footer() {
 	const [contact, setContact] = useState<any>(null);
 
 	useEffect(() => {
-		fetch('http://localhost:4000/api/contact')
+		fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/contact`)
 			.then(res => res.json())
 			.then(data => setContact(data))
 			.catch(err => console.error(err));
@@ -73,7 +73,7 @@ export default function Footer() {
 							{contact?.instagram && (
 								<IconButton
 									component="a"
-									href={contact.instagram}
+									href={contact.instagram.startsWith('http') ? contact.instagram : `https://${contact.instagram}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									sx={{ color: 'white', '&:hover': { color: '#d4af37' } }}
@@ -84,7 +84,7 @@ export default function Footer() {
 							{contact?.facebook && (
 								<IconButton
 									component="a"
-									href={contact.facebook}
+									href={contact.facebook.startsWith('http') ? contact.facebook : `https://${contact.facebook}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									sx={{ color: 'white', '&:hover': { color: '#d4af37' } }}
@@ -95,7 +95,7 @@ export default function Footer() {
 							{contact?.whatsapp && (
 								<IconButton
 									component="a"
-									href={contact.whatsapp}
+									href={contact.whatsapp.startsWith('http') ? contact.whatsapp : `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, '')}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									sx={{ color: 'white', '&:hover': { color: '#d4af37' } }}

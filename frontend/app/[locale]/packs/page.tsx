@@ -4,7 +4,7 @@ import { Link } from '@/i18n/routing';
 
 async function getPacks() {
 	try {
-		const res = await fetch('http://localhost:4000/api/packs', { cache: 'no-store' });
+		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/packs`, { cache: 'no-store' });
 		if (!res.ok) return [];
 		return res.json();
 	} catch (error) {

@@ -12,7 +12,7 @@ import { getTranslations } from 'next-intl/server';
 // For simplicity in this demo, I'll make the whole page a server component that renders a client component for the table
 // OR just use a form for the buttons.
 
-const API_URL = 'http://localhost:4000/api';
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api`;
 
 async function getReservations() {
 	try {

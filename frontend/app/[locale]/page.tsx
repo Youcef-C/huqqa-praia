@@ -22,12 +22,12 @@ export default function HomePage() {
   const [heroConfig, setHeroConfig] = useState<any | null>(null);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/events')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/events`)
       .then(res => res.json())
       .then(data => setEvents(data))
       .catch(err => console.error(err));
 
-    fetch('http://localhost:4000/api/hero')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/hero`)
       .then(res => res.json())
       .then(data => setHeroConfig(data))
       .catch(err => console.error(err));
