@@ -1,0 +1,41 @@
+{
+  "name": "huqqapraia-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/material": "^7.3.6",
+    "@mui/x-date-pickers": "^8.21.0",
+    "@prisma/client": "^7.1.0",
+    "@types/js-cookie": "^3.0.6",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.23.25",
+    "js-cookie": "^3.0.5",
+    "next": "16.0.8",
+    "next-intl": "^4.5.8",
+    "prisma": "^7.1.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "swiper": "^12.0.3",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.8",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

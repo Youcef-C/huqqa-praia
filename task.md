@@ -1,0 +1,14 @@
+- [x] Database Schema Update
+    - [x] Add `packId` (Int, optional) to `Reservation` model in `schema.prisma`
+    - [x] Run migration `prisma migrate dev`
+- [x] Backend Update
+    - [x] Update `POST /api/reservations` in `server.ts` to accept `packId`
+    - [x] Update `GET /api/reservations` to include `pack` relation
+- [x] Frontend: Translations
+    - [x] Add keys for "Select Pack", "Pack", "Price", etc. in `en.json`, `fr.json`, `pt.json`
+- [x] Frontend: Reservation Page
+    - [x] Fetch available packs in `ReservationPage`
+    - [x] Add UI field (Select/Radio) to choose a pack
+    - [x] Update `handleSubmit` to send `packId`
+- [x] Admin Dashboard
+    - [x] Update `ReservationsTable` columns to show selected Pack

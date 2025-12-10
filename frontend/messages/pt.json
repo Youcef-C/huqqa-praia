@@ -1,0 +1,198 @@
+{
+	"HomePage": {
+		"title": "Bem-vindo ao Huqqa Praia",
+		"subtitle": "O lugar perfeito para relaxar",
+		"bookNow": "Reservar Agora",
+		"viewMenu": "Ver Menu",
+		"address": "Bagatelle, Moka, Maurício",
+		"bookTable": "Reservar uma mesa",
+		"happeningNow": "ACONTECENDO AGORA",
+		"upcomingEvents": "Próximos Eventos"
+	},
+	"Navigation": {
+		"home": "Início",
+		"menu": "Menu",
+		"packs": "Packs",
+		"reservation": "Reserva",
+		"thePlace": "O Lugar",
+		"dashboard": "Painel"
+	},
+	"Reservation": {
+		"title": "Reservar uma mesa",
+		"name": "Nome",
+		"email": "Email",
+		"date": "Data",
+		"guests": "Convidados",
+		"submit": "Confirmar",
+		"subtitle": "Reserve sua mesa agora. Limitado a 6 convidados por reserva.",
+		"phone": "Telefone",
+		"maxGuests": "Máx 6 convidados",
+		"maxGuests": "Máx 6 convidados",
+		"successMsg": "Pedido de reserva enviado!",
+		"arrivalTime": "Hora de Chegada",
+		"selectPack": "Selecionar um Pack (Opcional)",
+		"noPack": "Sem Pack",
+		"packPrice": "{price}"
+	},
+	"Admin": {
+		"dashboardTitle": "Painel de Administração",
+		"reservationsTitle": "RESERVAS",
+		"HeroManager": {
+			"title": "Vídeo de Fundo Hero",
+			"uploadLabel": "Carregar Vídeo (MP4/WebM)",
+			"uploadButton": "Selecionar Vídeo",
+			"updateButton": "Atualizar Vídeo",
+			"currentVideo": "Vídeo Atual",
+			"noVideo": "Nenhum vídeo selecionado"
+		},
+		"reservationsTable": {
+			"date": "Data",
+			"name": "Nome",
+			"guests": "Convidados",
+			"contact": "Contato",
+			"status": "Estado",
+			"statusValues": {
+				"CONFIRMED": "Confirmado",
+				"PENDING": "Pendente",
+				"CANCELLED": "Cancelado"
+			},
+			"pack": "Pack",
+			"actions": "Ações",
+			"noReservations": "Nenhuma reserva encontrada"
+		},
+		"MenuManager": {
+			"title": "Itens do Menu",
+			"addItem": "Adicionar Item",
+			"tableHeaders": {
+				"nameFr": "Nome (FR)",
+				"category": "Categoria",
+				"price": "Preço",
+				"status": "Status",
+				"actions": "Ações"
+			},
+			"status": {
+				"available": "Disponível",
+				"unavailable": "Indisponível"
+			},
+			"dialog": {
+				"confirmDeleteTitle": "CONFIRMAR EXCLUSÃO",
+				"confirmDeleteMsg": "Tem certeza que deseja excluir este item?",
+				"cancel": "Cancelar",
+				"delete": "Excluir",
+				"editItem": "EDITAR ITEM",
+				"addItemTitle": "ADICIONAR ITEM",
+				"update": "Atualizar"
+			},
+			"form": {
+				"names": "Nomes",
+				"frenchReq": "Francês (Obrigatório)",
+				"english": "Inglês",
+				"portuguese": "Português",
+				"descriptions": "Descrições",
+				"descFr": "Descrição (FR)",
+				"descEn": "Descrição (EN)",
+				"descPt": "Descrição (PT)",
+				"details": "Detalhes",
+				"priceCve": "Preço (CVE)",
+				"category": "Categoria",
+				"food": "Comida",
+				"drink": "Bebida",
+				"hookah": "Narguilé",
+				"availability": "Disponibilidade"
+			}
+		},
+		"EventsManager": {
+			"title": "Eventos",
+			"addEvent": "Adicionar Evento",
+			"tableHeaders": {
+				"date": "Data",
+				"titleFr": "Título (FR)",
+				"image": "Imagem",
+				"actions": "Ações"
+			},
+			"imageExists": {
+				"yes": "Sim",
+				"no": "Não"
+			},
+			"dialog": {
+				"confirmDeleteTitle": "CONFIRMAR EXCLUSÃO",
+				"confirmDeleteMsg": "Tem certeza que deseja excluir este evento?",
+				"cancel": "Cancelar",
+				"delete": "Excluir",
+				"editEvent": "EDITAR EVENTO",
+				"addEventTitle": "ADICIONAR EVENTO",
+				"update": "Atualizar"
+			},
+			"form": {
+				"titles": "Títulos",
+				"titleFr": "Título (FR)",
+				"titleEn": "Título (EN)",
+				"titlePt": "Título (PT)",
+				"details": "Detalhes",
+				"date": "Data",
+				"imageLabel": "Nome da Imagem/URL",
+				"imageHelper": "ex: 'event1.jpg' (em public/assets) ou https://...",
+				"descriptions": "Descrições",
+				"descFr": "Descrição (FR)",
+				"descEn": "Descrição (EN)",
+				"descPt": "Descrição (PT)"
+			}
+		},
+		"PacksManager": {
+			"title": "Packs",
+			"addPack": "Adicionar Pack",
+			"tableHeaders": {
+				"titleFr": "Título (FR)",
+				"recommended": "Recomendado",
+				"price": "Preço",
+				"actions": "Ações"
+			},
+			"noPacks": "Nenhum pack encontrado",
+			"dialog": {
+				"confirmDeleteTitle": "CONFIRMAR EXCLUSÃO",
+				"confirmDeleteMsg": "Tem certeza que deseja excluir este pack?",
+				"cancel": "Cancelar",
+				"delete": "Excluir",
+				"editPack": "EDITAR PACK",
+				"addPackTitle": "ADICIONAR PACK",
+				"update": "Atualizar",
+				"add": "Adicionar"
+			},
+			"form": {
+				"priceLabel": "Preço (ex: 12.000 CVE)",
+				"recommendedLabel": "Recomendado para (ex: 2 Pessoas)",
+				"titleFr": "Título (FR)",
+				"titleEn": "Título (EN)",
+				"titlePt": "Título (PT)",
+				"itemsHelper": "Itens (Lista separada por vírgulas ou novas linhas, processada como JSON no envio)",
+				"itemsFr": "Itens (FR)",
+				"itemsEn": "Itens (EN)",
+				"itemsPt": "Itens (PT)"
+			}
+		}
+	},
+	"MenuPage": {
+		"title": "Menu",
+		"categories": {
+			"FOOD": "Comida",
+			"DRINK": "Bebidas",
+			"HOOKAH": "Narguilé"
+		}
+	},
+	"PacksPage": {
+		"title": "Packs",
+		"subtitle": "Experimente o melhor de Huqqa Bagatelle",
+		"bookNow": "Reservar Agora"
+	},
+	"ThePlacePage": {
+		"title": "O Lugar",
+		"description": "Descubra o layout do nosso lounge exclusivo. Projetado para conforto e privacidade."
+	},
+	"Footer": {
+		"description": "Apaixonados em criar experiências inesquecíveis através de shisha premium, bebidas requintadas e uma atmosfera vibrante.",
+		"contactUs": "Contacte-nos",
+		"followUs": "Siga-nos",
+		"loading": "Carregando...",
+		"allRightsReserved": "Todos os direitos reservados."
+	}
+}
