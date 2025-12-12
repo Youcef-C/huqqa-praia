@@ -10,6 +10,11 @@ const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat
 export const metadata = {
 	title: 'Huqqa Praia - Lounge & Shisha',
 	description: 'Premium Shisha Lounge & Bar',
+	icons: {
+		icon: '/assets/icon.png',
+		shortcut: '/assets/icon.png',
+		apple: '/assets/icon.png',
+	},
 };
 
 export default async function LocaleLayout({
