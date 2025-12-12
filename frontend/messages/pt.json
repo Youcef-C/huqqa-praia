@@ -178,16 +178,16 @@
 				"DRINK": "Bebidas",
 				"HOOKAH": "Narguilé"
 			}
+		},
+		"PacksPage": {
+			"title": "Packs",
+			"subtitle": "Experimente o melhor de Huqqa Bagatelle",
+			"bookNow": "Reservar Agora"
+		},
+		"ThePlacePage": {
+			"title": "O Lugar",
+			"description": "Descubra o layout do nosso lounge exclusivo. Projetado para conforto e privacidade."
 		}
-	},
-	"PacksPage": {
-		"title": "Packs",
-		"subtitle": "Experimente o melhor de Huqqa Bagatelle",
-		"bookNow": "Reservar Agora"
-	},
-	"ThePlacePage": {
-		"title": "O Lugar",
-		"description": "Descubra o layout do nosso lounge exclusivo. Projetado para conforto e privacidade."
 	},
 	"Footer": {
 		"description": "Apaixonados em criar experiências inesquecíveis através de shisha premium, bebidas requintadas e uma atmosfera vibrante.",
