@@ -1,6 +1,8 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
+import { sendReservationNotification } from './services/emailService';
 
 const app = express();
 const prisma = new PrismaClient();
@@ -131,9 +133,33 @@ app.post('/api/reservations', async (req, res) => {
 			data.pack = { connect: { id: parseInt(packId) } };
 		}
 
+
+		console.log("[DEBUG] creating reservation with data:", data);
 		const newReservation = await prisma.reservation.create({
-			data
+			data,
+			include: { pack: true }
 		});
+		console.log("[DEBUG] reservation created id:", newReservation.id);
+
+		// Send Email Notification
+		try {
+			const contactInfo = await prisma.contactInfo.findFirst();
+			console.log("[DEBUG] contactInfo found:", contactInfo ? "YES" : "NO", contactInfo?.email);
+
+			if (contactInfo && contactInfo.email) {
+				await sendReservationNotification(contactInfo.email, {
+					name,
+					email,
+					phone,
+					guests: guestsInt,
+					date: reservationDate,
+					packName: newReservation.pack?.titleEn || newReservation.pack?.titleFr
+				});
+			}
+		} catch (emailErr) {
+			console.error("Failed to trigger email notification:", emailErr);
+		}
+
 		res.json(newReservation);
 	} catch (error) {
 		console.error(error); // Log for debug
